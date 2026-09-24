@@ -5,9 +5,9 @@ assert.equal(response.ok, true, 'a página inicial deve responder com sucesso')
 
 const page = await response.text()
 
-const iconResponse = await fetch('http://localhost:3000/icon.png')
-assert.equal(iconResponse.ok, true, 'a logo deve estar disponível como ícone da página')
-assert.match(iconResponse.headers.get('content-type') ?? '', /^image\/png/, 'o ícone da página deve ser um PNG')
+const iconResponse = await fetch('http://localhost:3000/icon.ico')
+assert.equal(iconResponse.ok, true, 'o ícone ICO deve estar disponível como ícone da página')
+assert.match(iconResponse.headers.get('content-type') ?? '', /^image\/x-icon|image\/vnd\.microsoft\.icon/, 'o ícone da página deve ser um ICO')
 
 assert.match(page, /Lara[\s\S]{0,250}Assistente Jurídica na ACF/, 'a identidade de Lara deve estar visível na página inicial')
 const positionedRoleMatches = page.match(/Lara Coelho<\/span><span[^>]*>Assistente Jurídica na ACF<\/span>/g) ?? []
@@ -21,6 +21,17 @@ assert.match(page, /name="description" content="Lara Coelho, Assistente Jurídic
 assert.match(page, /https:\/\/larajur\.netlify\.app\//, 'o HTML deve apontar para o domínio canônico')
 assert.match(page, /application\/ld\+json/, 'a página deve expor dados estruturados')
 assert.match(page, /Atendimento presencial em Minas Gerais e online\./, 'o contexto de atendimento deve estar visível')
+const laraImageMatch = page.match(/src="([^"]*lara[^"]*\.jpeg)"/)
+assert.ok(laraImageMatch, 'a seção Sobre Lara deve usar a imagem local de Lara')
+const laraImageTag = page.match(/<img[^>]*src="[^"]*lara[^"]*\.jpeg"[^>]*>/)
+assert.ok(laraImageTag, 'a imagem local de Lara deve estar presente no conteúdo da página')
+assert.match(laraImageTag[0], /rounded-xl/, 'a foto de Lara deve ter bordas discretamente arredondadas')
+assert.doesNotMatch(laraImageTag[0], /opacity-85|mix-blend-luminosity/, 'a foto de Lara não deve usar o filtro azulado anterior')
+assert.doesNotMatch(page, /<div class="absolute inset-0 bg-primary\/25"/, 'a foto de Lara não deve receber uma sobreposição azul')
+const laraImage = await fetch(new URL(laraImageMatch[1], 'http://localhost:3000'))
+assert.equal(laraImage.ok, true, 'a imagem local de Lara deve estar disponível')
+assert.match(laraImage.headers.get('content-type') ?? '', /^image\/jpeg/, 'a imagem local de Lara deve ser um JPEG')
+assert.doesNotMatch(page, /images\.unsplash\.com\/photo-1551836022-d5d88e9218df/, 'a imagem externa anterior não deve permanecer na página')
 
 const [robots, sitemap, verification] = await Promise.all([
   fetch('http://localhost:3000/robots.txt'),

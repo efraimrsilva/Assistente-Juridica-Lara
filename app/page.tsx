@@ -17,6 +17,7 @@ import {
   Users,
   X,
 } from "lucide-react";
+import laraImage from "./lara.jpeg";
 
 const whatsappMessage =
   "Olá, Lara. Gostaria de compartilhar minha necessidade e receber um encaminhamento inicial. Você poderia me orientar sobre os próximos passos?";
@@ -209,11 +210,10 @@ export default function Page() {
           <div className="relative mx-auto w-full max-w-md lg:ml-auto">
             <div className="relative aspect-[4/5] overflow-hidden bg-secondary/30">
               <img
-                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=85"
-                alt="Ambiente de acolhimento e organização"
-                className="h-full w-full object-cover opacity-85 mix-blend-luminosity"
+                src={laraImage.src}
+                alt="Lara Coelho, Assistente Jurídica na ACF"
+                className="h-full w-full rounded-xl object-cover"
               />
-              <div className="absolute inset-0 bg-primary/25" />
               <div className="absolute bottom-6 left-6 right-6 border border-background/40 bg-primary/80 p-5 backdrop-blur-sm">
                 <p className="font-serif text-xl text-background">
                   “Todo bom atendimento começa com uma escuta atenta.”
