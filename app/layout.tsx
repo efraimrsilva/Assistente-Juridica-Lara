@@ -15,12 +15,53 @@ const dmMono = DM_Mono({
   weight: ["400", "500"],
 });
 
+const siteUrl = "https://larajur.netlify.app";
+const title = "Lara Coelho | Assistente Jurídica na ACF";
+const description =
+  "Lara Coelho, Assistente Jurídica na ACF, oferece acolhimento inicial, organização e encaminhamento para atendimento presencial em Minas Gerais e online.";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: "Lara Coelho | Assistente Jurídica na ACF",
+      url: siteUrl,
+      inLanguage: "pt-BR",
+    },
+    {
+      "@type": "Person",
+      name: "Lara Coelho",
+      jobTitle: "Assistente Jurídica",
+      url: siteUrl,
+      worksFor: {
+        "@type": "Organization",
+        name: "ACF",
+      },
+      areaServed: "Minas Gerais",
+    },
+  ],
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dralara.netlify.app"),
-  title: "Lara Coelho | Assistente Jurídica na ACF",
-  description:
-    "Lara, Assistente Jurídica na ACF, oferece acolhimento inicial, organização e encaminhamento para o atendimento jurídico.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
   alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "/",
+    siteName: "Lara Coelho",
+    title,
+    description,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: title }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/opengraph-image"],
+  },
   generator: "v0.app",
 };
 
@@ -41,6 +82,10 @@ export default function RootLayout({
     >
       <body className="antialiased">
         {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

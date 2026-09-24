@@ -17,7 +17,23 @@ assert.match(page, /A análise e a orientação jurídica são conduzidas pela e
 assert.doesNotMatch(page, /Dra\. Lara Advocacia/, 'a marca de advocacia individual não deve permanecer visível')
 assert.doesNotMatch(page, /23 áreas de atuação/, 'a página não deve apresentar áreas de atuação de Lara')
 assert.match(page, /<title>Lara Coelho \| Assistente Jurídica na ACF<\/title>/, 'o título da aba deve usar a nova identidade')
-assert.match(page, /name="description" content="Lara, Assistente Jurídica na ACF, oferece acolhimento inicial, organização e encaminhamento para o atendimento jurídico."/, 'a descrição deve explicar o papel de Lara')
+assert.match(page, /name="description" content="Lara Coelho, Assistente Jurídica na ACF, oferece acolhimento inicial, organização e encaminhamento para atendimento presencial em Minas Gerais e online."/, 'a descrição deve explicar o papel de Lara e a área de atendimento')
+assert.match(page, /https:\/\/larajur\.netlify\.app\//, 'o HTML deve apontar para o domínio canônico')
+assert.match(page, /application\/ld\+json/, 'a página deve expor dados estruturados')
+assert.match(page, /Atendimento presencial em Minas Gerais e online\./, 'o contexto de atendimento deve estar visível')
+
+const [robots, sitemap, verification] = await Promise.all([
+  fetch('http://localhost:3000/robots.txt'),
+  fetch('http://localhost:3000/sitemap.xml'),
+  fetch('http://localhost:3000/googlea3f2b8378fe5a305.html'),
+])
+
+assert.equal(robots.ok, true, 'robots.txt deve responder com sucesso')
+assert.match(await robots.text(), /Sitemap: https:\/\/larajur\.netlify\.app\/sitemap\.xml/, 'robots deve apontar para o sitemap canônico')
+assert.equal(sitemap.ok, true, 'sitemap.xml deve responder com sucesso')
+assert.match(await sitemap.text(), /https:\/\/larajur\.netlify\.app\//, 'o sitemap deve listar a página canônica')
+assert.equal(verification.ok, true, 'o arquivo de verificação do Google deve responder com sucesso')
+assert.equal(await verification.text(), 'google-site-verification: googlea3f2b8378fe5a305.html', 'o token do Google deve permanecer inalterado')
 
 const heroStart = page.indexOf('id="inicio"')
 const aboutStart = page.indexOf('id="sobre"')

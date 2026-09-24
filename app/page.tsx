@@ -475,6 +475,9 @@ export default function Page() {
               organizo as informações iniciais e conduzo o encaminhamento para o
               próximo passo.
             </p>
+            <p className="mt-4 max-w-lg text-sm leading-6 text-background/65">
+              Atendimento presencial em Minas Gerais e online.
+            </p>
             <p className="mt-4 max-w-lg text-sm leading-6 text-accent">
               A análise e a orientação jurídica são conduzidas pela equipe
               responsável da ACF.
