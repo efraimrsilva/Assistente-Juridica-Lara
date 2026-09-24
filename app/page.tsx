@@ -111,8 +111,8 @@ export default function Page() {
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-accent">
               <MessageCircleHeart size={20} strokeWidth={1.5} />
             </span>
-            <span className="font-serif text-xl font-semibold tracking-tight text-primary">
-              Lara{" "}
+            <span className="flex flex-col font-serif text-xl font-semibold leading-tight tracking-tight text-primary">
+              <span>Lara Coelho</span>
               <span className="font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-secondary">
                 Assistente Jurídica na ACF
               </span>
@@ -219,7 +219,7 @@ export default function Page() {
                   “Todo bom atendimento começa com uma escuta atenta.”
                 </p>
                 <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-accent">
-                  Lara · Assistente Jurídica
+                  Lara Coelho · Assistente Jurídica
                 </p>
               </div>
             </div>
@@ -481,13 +481,13 @@ export default function Page() {
             </p>
             <div className="mt-10 flex flex-col gap-4 text-sm text-background/80">
               <a
-                href="mailto:contato@laramartins.adv.br"
+                href="mailto:contato@laracoelho.adv.br"
                 className="flex items-center gap-3 hover:text-accent"
               >
                 <span className="flex h-9 w-9 items-center justify-center border border-background/20">
                   <FileCheck2 size={16} />
                 </span>{" "}
-                contato@laramartins.adv.br
+                contato@laracoelho.adv.br
               </a>
               <a
                 href={whatsappHref}
@@ -544,8 +544,8 @@ export default function Page() {
       <footer className="bg-primary text-background">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 border-t border-background/15 px-6 py-8 text-sm lg:flex-row lg:items-center lg:justify-between lg:px-10">
           <div>
-            <p className="font-serif text-xl">
-              Lara{" "}
+            <p className="flex flex-col font-serif text-xl leading-tight">
+              <span>Lara Coelho</span>
               <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-accent">
                 Assistente Jurídica na ACF
               </span>
@@ -564,7 +564,7 @@ export default function Page() {
               ))}
             </div>
             <p className="text-xs leading-5 text-white">
-              © <span suppressHydrationWarning>{currentYear}</span> Lara ·
+              © <span suppressHydrationWarning>{currentYear}</span> Lara Coelho·
               Assistente Jurídica na ACF. Feito com 💖 por{" "}
               <a
                 href="https://www.linkedin.com/in/efraimrsilva/"

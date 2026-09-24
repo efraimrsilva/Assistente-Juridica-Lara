@@ -27,7 +27,7 @@ A composição atual, paleta, tipografia, espaçamento e linguagem visual serão
 
 ## Metadados e qualidade
 
-- Atualizar título, descrição e demais mensagens de marca para Lara Assistente Jurídica na ACF.
+- Atualizar título, descrição e demais mensagens de marca para Lara Coelho Assistente Jurídica na ACF.
 - Atualizar o teste da página inicial para garantir a nova marca, a ordem de navegação e a ausência de linguagem de advocacia individual e de áreas de atuação.
 - Validar com teste automatizado e build de produção.
 

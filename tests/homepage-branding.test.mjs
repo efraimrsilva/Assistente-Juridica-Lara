@@ -10,11 +10,13 @@ assert.equal(iconResponse.ok, true, 'a logo deve estar disponível como ícone d
 assert.match(iconResponse.headers.get('content-type') ?? '', /^image\/png/, 'o ícone da página deve ser um PNG')
 
 assert.match(page, /Lara[\s\S]{0,250}Assistente Jurídica na ACF/, 'a identidade de Lara deve estar visível na página inicial')
+const positionedRoleMatches = page.match(/Lara Coelho<\/span><span[^>]*>Assistente Jurídica na ACF<\/span>/g) ?? []
+assert.equal(positionedRoleMatches.length, 2, 'cabeçalho e rodapé devem posicionar a função abaixo do nome de Lara')
 assert.match(page, /Acolhimento inicial, organização e encaminhamento/, 'o Hero deve explicar o papel de Lara')
 assert.match(page, /A análise e a orientação jurídica são conduzidas pela equipe responsável da ACF/, 'a página deve delimitar o papel da equipe jurídica')
 assert.doesNotMatch(page, /Dra\. Lara Advocacia/, 'a marca de advocacia individual não deve permanecer visível')
 assert.doesNotMatch(page, /23 áreas de atuação/, 'a página não deve apresentar áreas de atuação de Lara')
-assert.match(page, /<title>Lara \| Assistente Jurídica na ACF<\/title>/, 'o título da aba deve usar a nova identidade')
+assert.match(page, /<title>Lara Coelho \| Assistente Jurídica na ACF<\/title>/, 'o título da aba deve usar a nova identidade')
 assert.match(page, /name="description" content="Lara, Assistente Jurídica na ACF, oferece acolhimento inicial, organização e encaminhamento para o atendimento jurídico."/, 'a descrição deve explicar o papel de Lara')
 
 const heroStart = page.indexOf('id="inicio"')

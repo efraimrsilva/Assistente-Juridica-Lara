@@ -24,9 +24,11 @@
 ### Task 1: Definir a nova identidade no teste de integração
 
 **Files:**
+
 - Modify: `tests/homepage-branding.test.mjs`
 
 **Interfaces:**
+
 - Consumes: HTML retornado por `GET http://localhost:3000/`.
 - Produces: contrato de conteúdo verificável para `app/page.tsx` e `app/layout.tsx`.
 
@@ -35,11 +37,31 @@
   Em `tests/homepage-branding.test.mjs`, substituir as asserções iniciais por este bloco:
 
   ```js
-  assert.match(page, /Lara\s*Assistente Jurídica na ACF/, 'a identidade de Lara deve estar visível na página inicial')
-  assert.match(page, /Acolhimento inicial, organização e encaminhamento/, 'o Hero deve explicar o papel de Lara')
-  assert.match(page, /A análise e a orientação jurídica são conduzidas pela equipe responsável da ACF/, 'a página deve delimitar o papel da equipe jurídica')
-  assert.doesNotMatch(page, /Dra\. Lara Advocacia/, 'a marca de advocacia individual não deve permanecer visível')
-  assert.doesNotMatch(page, /23 áreas de atuação/, 'a página não deve apresentar áreas de atuação de Lara')
+  assert.match(
+    page,
+    /Lara\s*Assistente Jurídica na ACF/,
+    "a identidade de Lara deve estar visível na página inicial",
+  );
+  assert.match(
+    page,
+    /Acolhimento inicial, organização e encaminhamento/,
+    "o Hero deve explicar o papel de Lara",
+  );
+  assert.match(
+    page,
+    /A análise e a orientação jurídica são conduzidas pela equipe responsável da ACF/,
+    "a página deve delimitar o papel da equipe jurídica",
+  );
+  assert.doesNotMatch(
+    page,
+    /Dra\. Lara Advocacia/,
+    "a marca de advocacia individual não deve permanecer visível",
+  );
+  assert.doesNotMatch(
+    page,
+    /23 áreas de atuação/,
+    "a página não deve apresentar áreas de atuação de Lara",
+  );
   ```
 
 - [x] **Step 2: Atualizar os contratos de navegação e apoio para o conteúdo novo**
@@ -47,16 +69,26 @@
   Substituir `expectedNavigation` e a verificação de cada área por:
 
   ```js
-  const expectedNavigation = ['#sobre', '#apoio', '#processo', '#faq', '#contato']
+  const expectedNavigation = [
+    "#sobre",
+    "#apoio",
+    "#processo",
+    "#faq",
+    "#contato",
+  ];
   const apoios = [
-    'Acolhimento inicial',
-    'Organização de informações',
-    'Documentos e agendamentos',
-    'Acompanhamento de comunicação',
-  ]
+    "Acolhimento inicial",
+    "Organização de informações",
+    "Documentos e agendamentos",
+    "Acompanhamento de comunicação",
+  ];
 
   for (const apoio of apoios) {
-    assert.match(page, new RegExp(`>${apoio}</h3>`), `${apoio} deve aparecer como um cartão de apoio`)
+    assert.match(
+      page,
+      new RegExp(`>${apoio}</h3>`),
+      `${apoio} deve aparecer como um cartão de apoio`,
+    );
   }
   ```
 
@@ -77,10 +109,12 @@
 ### Task 2: Reescrever a página em torno do trabalho de Lara
 
 **Files:**
+
 - Modify: `app/page.tsx`
 - Test: `tests/homepage-branding.test.mjs`
 
 **Interfaces:**
+
 - Consumes: contrato de strings e âncoras criado na Task 1; `lucide-react`; estado existente de menu e FAQ.
 - Produces: página inicial com as âncoras `#sobre`, `#apoio`, `#processo`, `#faq` e `#contato`.
 
@@ -90,11 +124,31 @@
 
   ```ts
   const apoios = [
-    { title: 'Acolhimento inicial', description: 'Recebo seu primeiro contato com atenção e registro o que é importante para o seu atendimento.', icon: Handshake },
-    { title: 'Organização de informações', description: 'Ajudo a reunir dados e contextualizar sua demanda para um encaminhamento mais claro.', icon: FileCheck2 },
-    { title: 'Documentos e agendamentos', description: 'Oriento sobre documentos iniciais e organizo o melhor momento para o próximo passo.', icon: Clock3 },
-    { title: 'Acompanhamento de comunicação', description: 'Mantenho uma comunicação próxima para que você saiba como seguir em cada etapa.', icon: Users },
-  ]
+    {
+      title: "Acolhimento inicial",
+      description:
+        "Recebo seu primeiro contato com atenção e registro o que é importante para o seu atendimento.",
+      icon: Handshake,
+    },
+    {
+      title: "Organização de informações",
+      description:
+        "Ajudo a reunir dados e contextualizar sua demanda para um encaminhamento mais claro.",
+      icon: FileCheck2,
+    },
+    {
+      title: "Documentos e agendamentos",
+      description:
+        "Oriento sobre documentos iniciais e organizo o melhor momento para o próximo passo.",
+      icon: Clock3,
+    },
+    {
+      title: "Acompanhamento de comunicação",
+      description:
+        "Mantenho uma comunicação próxima para que você saiba como seguir em cada etapa.",
+      icon: Users,
+    },
+  ];
   ```
 
 - [x] **Step 2: Atualizar marca, navegação e hero**
@@ -107,7 +161,7 @@
 
 - [x] **Step 4: Atualizar FAQ, contato e rodapé**
 
-  Reescrever as perguntas para primeiro contato, informações e documentos iniciais, agendamentos e encaminhamento à equipe. Incluir no texto de contato a frase exata `A análise e a orientação jurídica são conduzidas pela equipe responsável da ACF.`. Ajustar a mensagem do WhatsApp para pedir acolhimento e encaminhamento inicial, mantendo telefone, e-mail e o comportamento local do formulário. No rodapé, exibir `Lara Assistente Jurídica na ACF` e uma descrição discreta do vínculo com a ACF.
+  Reescrever as perguntas para primeiro contato, informações e documentos iniciais, agendamentos e encaminhamento à equipe. Incluir no texto de contato a frase exata `A análise e a orientação jurídica são conduzidas pela equipe responsável da ACF.`. Ajustar a mensagem do WhatsApp para pedir acolhimento e encaminhamento inicial, mantendo telefone, e-mail e o comportamento local do formulário. No rodapé, exibir `Lara Coelho Assistente Jurídica na ACF` e uma descrição discreta do vínculo com a ACF.
 
 - [x] **Step 5: Executar o teste atualizado para verificar aprovação**
 
@@ -122,10 +176,12 @@
 ### Task 3: Atualizar metadados e validar produção
 
 **Files:**
+
 - Modify: `app/layout.tsx`
 - Test: `tests/homepage-branding.test.mjs`
 
 **Interfaces:**
+
 - Consumes: nova identidade visível da Task 2.
 - Produces: metadados de documento alinhados ao conteúdo e um build de produção válido.
 
@@ -134,8 +190,16 @@
   Adicionar após as asserções iniciais:
 
   ```js
-  assert.match(page, /<title>Lara \| Assistente Jurídica na ACF<\/title>/, 'o título da aba deve usar a nova identidade')
-  assert.match(page, /name="description" content="Lara, Assistente Jurídica na ACF, oferece acolhimento inicial, organização e encaminhamento para o atendimento jurídico."/, 'a descrição deve explicar o papel de Lara')
+  assert.match(
+    page,
+    /<title>Lara Coelho \| Assistente Jurídica na ACF<\/title>/,
+    "o título da aba deve usar a nova identidade",
+  );
+  assert.match(
+    page,
+    /name="description" content="Lara, Assistente Jurídica na ACF, oferece acolhimento inicial, organização e encaminhamento para o atendimento jurídico."/,
+    "a descrição deve explicar o papel de Lara",
+  );
   ```
 
 - [x] **Step 2: Rodar o teste para confirmar que os metadados antigos falham**
@@ -149,7 +213,7 @@
   Definir os campos com os valores abaixo, sem modificar `metadataBase`, canonical, fontes, viewport ou Analytics:
 
   ```ts
-  title: 'Lara | Assistente Jurídica na ACF',
+  title: 'Lara Coelho | Assistente Jurídica na ACF',
   description: 'Lara, Assistente Jurídica na ACF, oferece acolhimento inicial, organização e encaminhamento para o atendimento jurídico.',
   ```
 
