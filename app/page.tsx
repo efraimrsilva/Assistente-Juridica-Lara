@@ -569,14 +569,7 @@ export default function Page() {
             <p className="text-xs leading-5 text-white">
               © <span suppressHydrationWarning>{currentYear}</span> Lara Coelho·
               Assistente Jurídica na ACF. Feito com 💖 por{" "}
-              <a
-                href="https://www.linkedin.com/in/efraimrsilva/"
-                target="_blank"
-                rel="noreferrer"
-                className="efraim-credit-link"
-              >
-                Efraim R. Silva
-              </a>
+              <span className="software-credit">Sintagma Software</span>
               . Todos os direitos reservados.
             </p>
           </div>

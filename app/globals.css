@@ -62,16 +62,12 @@ body { @apply bg-background text-foreground font-sans; }
 input, textarea { border-radius: 0; }
 button, a { -webkit-tap-highlight-color: transparent; }
 
-.efraim-credit-link {
+.software-credit {
   color: inherit;
-  text-decoration: underline;
-  text-decoration-color: rgb(255 255 255 / 35%);
-  text-underline-offset: 0.2em;
+  transition: text-shadow 200ms ease;
 }
 
-.efraim-credit-link:hover,
-.efraim-credit-link:focus-visible {
-  color: #fff;
+.software-credit:hover {
   text-shadow:
     0 0 0.35rem rgb(255 255 255 / 90%),
     0 0 0.9rem rgb(255 255 255 / 55%);
