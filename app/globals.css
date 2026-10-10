@@ -67,7 +67,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   transition: text-shadow 200ms ease;
 }
 
-.software-credit:hover {
+.software-credit:hover,
+.software-credit:focus-visible {
   text-shadow:
     0 0 0.35rem rgb(255 255 255 / 90%),
     0 0 0.9rem rgb(255 255 255 / 55%);
