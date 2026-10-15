@@ -567,8 +567,8 @@ export default function Page() {
               ))}
             </div>
             <p className="text-xs leading-5 text-white">
-              © <span suppressHydrationWarning>{currentYear}</span> Lara Coelho 
-              - Assistente Jurídica na ACF. Feito com 💖 por{" "}
+              © <span suppressHydrationWarning>{currentYear}</span>{" "}
+              Lara Coelho - Assistente Jurídica na ACF. Feito com 💖 por{" "}
               <a
                 href="https://sintagmasoftware.netlify.app/"
                 className="software-credit"
